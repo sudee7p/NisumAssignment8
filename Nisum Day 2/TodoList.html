@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO List with Local Storage</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    li {
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    .completed {
+      text-decoration: line-through;
+      color: gray;
+    }
+    button.delete {
+      margin-left: 10px;
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>My TODO List</h2>
+
+  <input id="taskInput" type="text" placeholder="Enter a task..." />
+  <button id="addTaskBtn">Add Task</button>
+
+  <ul id="taskList"></ul>
+
+  <script>
+    const taskInput = document.getElementById("taskInput");
+    const taskList = document.getElementById("taskList");
+
+    function loadTasks() {
+      taskList.innerHTML = "";
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+      tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.textContent = task.text;
+        li.className = task.completed ? "completed" : "";
+        li.addEventListener("click", () => {
+          tasks[index].completed = !tasks[index].completed;
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          loadTasks();
+        });
+
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.className = "delete";
+        delBtn.addEventListener("click", (e) => {
+          e.stopPropagation(); 
+          tasks.splice(index, 1);
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+          loadTasks();
+        });
+
+        li.appendChild(delBtn);
+        taskList.appendChild(li);
+      });
+    }
+    document.getElementById("addTaskBtn").addEventListener("click", () => {
+      const taskText = taskInput.value.trim();
+      if (!taskText) return;
+
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks.push({ text: taskText, completed: false });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+      taskInput.value = "";
+      loadTasks();
+    });
+
+    loadTasks();
+  </script>
+
+</body>
+</html>

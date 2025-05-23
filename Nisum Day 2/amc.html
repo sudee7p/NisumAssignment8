@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Methods Challenge</title>
+</head>
+<body>
+
+  <h2>Squares of Even Numbers</h2>
+  <p>Original array: <code>[1, 2, 3, 4, 5, 6]</code></p>
+  <button onclick="showSquares()">Show Squares of Evens</button>
+  <p>Result: <span id="result"></span></p>
+
+  <script>
+    function showSquares() {
+      const numbers = [1, 2, 3, 4, 5, 6];
+      const squaresOfEvens = numbers
+        .filter(num => num % 2 === 0)
+        .map(num => num * num);
+      document.getElementById("result").innerText = JSON.stringify(squaresOfEvens);
+      console.log("Squares of even numbers:", squaresOfEvens);
+    }
+  </script>
+
+</body>
+</html>

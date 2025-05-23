@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fetch API with Error Handling</title>
+</head>
+<body>
+
+  <h2>Public APIs</h2>
+  <button onclick="fetchPublicAPIs()">Load APIs</button>
+  <ul id="apiList">Click the button to load data.</ul>
+
+  <script>
+    async function fetchPublicAPIs() {
+      const apiList = document.getElementById("apiList");
+      apiList.innerHTML = "<li>Loading...</li>";
+
+      try {
+        const response = await fetch("https://api.publicapis.org/entries");
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        apiList.innerHTML = ""; 
+
+        data.entries.slice(0, 10).forEach(entry => {
+          const li = document.createElement("li");
+          li.textContent = `${entry.API} — ${entry.Description}`;
+          apiList.appendChild(li);
+        });
+
+      } catch (error) {
+        apiList.innerHTML = `<li style="color:red;">Error: ${error.message}</li>`;
+        console.error("Fetch error:", error);
+      }
+    }
+  </script>
+
+</body>
+</html>

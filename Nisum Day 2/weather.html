@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+      background: #f0f8ff;
+    }
+    .container {
+      display: flex;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background: white;
+      box-shadow: 2px 2px 8px #aaa;
+    }
+    .left, .right {
+      padding: 20px;
+    }
+    .left {
+      border-right: 1px solid #ddd;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      margin-bottom: 10px;
+    }
+    #weatherDetails {
+      font-size: 18px;
+      margin-top: 10px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left">
+      <h2>Instructions</h2>
+      <ul>
+        <li>Enter the name of a country (e.g., India, USA, Japan)</li>
+        <li>Press Enter to view the weather details</li>
+        <li>Static data is used for demo</li>
+      </ul>
+    </div>
+    <div class="right">
+      <h2>Weather Lookup</h2>
+      <input id="countryInput" type="text" placeholder="Enter country name..." />
+      <div id="weatherDetails">Weather info will appear here.</div>
+    </div>
+  </div>
+
+  <script src = " first.js" ></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Car Class Example</title>
+</head>
+<body>
+
+  <h2>Car Acceleration Simulator</h2>
+  <p><strong>Brand:</strong> <span id="carBrand">Toyota</span></p>
+  <p><strong>Current Speed:</strong> <span id="carSpeed">60</span> km/h</p>
+  <button onclick="car.accelerate()">Accelerate</button>
+
+  <script>
+    class Car {
+      constructor(brand, speed) {
+        this.brand = brand;
+        this.speed = speed;
+      }
+
+      accelerate() {
+        this.speed += 10;
+        document.getElementById("carSpeed").innerText = this.speed;
+        console.log(`${this.brand} is going at ${this.speed} km/h`);
+      }
+    }
+
+    const car = new Car("Toyota", 60);
+  </script>
+
+</body>
+</html>
